@@ -24,7 +24,7 @@ import com.sk89q.worldguard.bukkit.BukkitUtil;
 import com.sk89q.worldguard.bukkit.ConfigurationManager;
 import com.sk89q.worldguard.bukkit.WorldConfiguration;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import com.sk89q.worldguard.protection.databases.JSONDatabase;
+import com.sk89q.worldguard.protection.databases.CSVDatabase;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.managers.FlatRegionManager;
 import com.sk89q.worldguard.protection.managers.RegionManager;
@@ -98,7 +98,7 @@ public class GlobalRegionManager {
      */
     protected File getPath(String name) {
         return new File(plugin.getDataFolder(),
-                "worlds" + File.separator + name + File.separator + "regions.json");
+                "worlds" + File.separator + name + File.separator + "regions.csv");
     }
 
     /**
@@ -134,7 +134,7 @@ public class GlobalRegionManager {
         
         try {
             // Create a manager
-            RegionManager manager = new FlatRegionManager(new JSONDatabase(file));
+            RegionManager manager = new FlatRegionManager(new CSVDatabase(file));
             managers.put(name, manager);
             manager.load();
 
